@@ -1,4 +1,7 @@
+require 'byebug'
+
 class PatientsController < ApplicationController
+
 rescue_from ActiveRecord::RecordInvalid, with: :unatry
 rescue_from ActiveRecord::RecordNotFound, with: :opaque
 
@@ -13,14 +16,16 @@ rescue_from ActiveRecord::RecordNotFound, with: :opaque
         
     end
     
-    def create        
+    def create      
+         
         # patient = Patient.new(patient_params)
         patient = Patient.create(patient_params)
+        # byebug 
         if patient.valid?
             # patient = Patient.create!(patient_params)
             render json: patient
         else
-            render json: patient.errors
+            render json: patient.errors, status: :unprocessable_entity
         end
     end
 
