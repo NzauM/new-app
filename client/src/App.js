@@ -8,7 +8,7 @@ function App() {
   const[name, setName] = useState("")
   const[patients, setPatients] = useState([])
   console.log("Entered the App component")
-  // setName("Mercy")
+  // setName("Mercy")a
   // /movies
   // useEffect(function, dependencyarray())
   // 1. nodepency array
