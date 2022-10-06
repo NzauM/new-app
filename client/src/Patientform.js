@@ -20,46 +20,37 @@ function Patientform() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(patientData),
-    })
-    .then((res)=>{
-      console.log(res)
-      if(res.ok){
-        res.json().then((data)=>console.log(data))
+    }).then((res) => {
+      console.log(res);
+      if (res.ok) {
+        res.json().then((data) => console.log(data));
+      } else {
+        res.json().then((response) => {
+          console.log(response);
+          showErrors(Object.values(response));
+        });
       }
-      else{
-        res.json().then((response)=>{
-          console.log(response)
-          showErrors(Object.values(response))
-        })
-      }
-    })
+    });
   }
-  console.log(errors)
+  console.log(errors);
 
-  const errorsList = errors.map((err)=>{
-    return(
+  const errorsList = errors.map((err) => {
+    return (
       <>
         <h1>{err}</h1>
       </>
-    )
-  })
-  
-
-
+    );
+  });
 
   // const errorList = errors.map((elem,ind)=>{
   //   console.log(elem)
-  //   return(      
+  //   return(
   //       <h1>{elem}</h1>
   //   )
   //  })
   return (
     <>
-     {errors.length > 0 && (
-      <ul>
-        {errorsList}
-      </ul>
-     )}
+      {errors.length > 0 && <ul>{errorsList}</ul>}
 
       <form>
         <label>
@@ -82,6 +73,13 @@ function Patientform() {
           Gender
           <input onBlur={handleInput} type="text" name="gender" />
         </label>
+        <label htmlFor="cars">Choose a car:</label>
+        <select onChange={(e)=>console.log(e.target.value)} name="specializations" id="cars" multiple>
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="opel">Opel</option>
+          <option value="audi">Audi</option>
+        </select>
         <input onClick={handleAddPatient} type="submit" value="Submit" />
       </form>
     </>

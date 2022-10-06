@@ -46,7 +46,7 @@ function App() {
   return (
     <div className="App">
     <h1> Karibu </h1> 
-    <input onBlur={handleAddName} type='text'></input>
+    {/* <input onBlur={handleAddName} type='text'></input> */}
     {patientsList}
     <Patientform/>
     </div> 

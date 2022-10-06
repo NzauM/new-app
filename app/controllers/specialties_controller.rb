@@ -6,7 +6,7 @@ class SpecialtiesController < ApplicationController
 
     def create
         record = Specialty.create!(recordparams)
-        render json: record, status: :unprocessable_entity
+        render json: record, status: :created
     end
 
     private

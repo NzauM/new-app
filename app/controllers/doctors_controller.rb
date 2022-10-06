@@ -2,15 +2,17 @@ class DoctorsController < ApplicationController
 
     def index
         doctors = Doctor.all
-        render json: doctors
+        render json: doctors, each_serializer: DoctordetailsSerializer
     end
 
     def create
         puts params
         doctor = Doctor.create!(docparams)
-        new_record = doctor.doctorspecialties.create("specialty_id": 1)
-        # new_record.save
-        # byebug
+        # params[:specializations].each do |spec|
+        #     speciality = Specialty.find_or_create_by(name: spec)
+        #     newdocSpec = doctor.doctorspecialties.create("specialty_id": speciality.id)   
+        # end 
+        
         render json: doctor
     end
 
